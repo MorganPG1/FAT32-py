@@ -19,6 +19,9 @@ for i, part in enumerate(partitions):
     print(f"Partition {i+1}: ")
     print(f"Size: {part.size} bytes")
     print(f"Start position: {hex(part.start)}")
-    print(f"Type: {hex(part.type)}")
+    if part.type_str != "":
+        print(f"Type: {hex(part.type)} ({part.type_str})")
+    else:
+        print(f"Type: {hex(part.type)}")
     print(f"Attributes: {hex(part.attributes)}")
     print()

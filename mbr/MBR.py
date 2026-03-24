@@ -9,6 +9,7 @@ https://wiki.osdev.org/MBR_(x86)
 '''
 #Imports
 from block.blockDev import BlockDev
+from mbr.part_ids import PART_IDS
 
 class MBR_Partition():
     def __init__(self, data:bytearray) -> None:
@@ -16,6 +17,10 @@ class MBR_Partition():
         self.type = int.from_bytes(data[0x4:0x5], "little")
         self.start = int.from_bytes(data[0x8:0xC], "little") * 512
         self.size = int.from_bytes(data[0xC:0x10], "little") * 512
+        if self.type < len(PART_IDS):
+            self.type_str = PART_IDS[self.type]
+        else:
+            self.type_str = ""
 class MBR_Decoder():
     def __init__(self, disk:BlockDev) -> None:
         self.bootstrap = bytearray(disk.read(0x000, 440))

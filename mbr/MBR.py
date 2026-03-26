@@ -25,7 +25,12 @@ class MBR_Decoder():
     def __init__(self, disk:BlockDev) -> None:
         self.bootstrap = bytearray(disk.read(0x000, 440))
         self.diskId = bytearray(disk.read(0x1B8, 4))
-        self.partitionEntries = [bytearray(disk.read(0x1BE,16)), bytearray(disk.read(0x1CE,16)), bytearray(disk.read(0x1DE,16)), bytearray(disk.read(0x1EE,16))]
+        self.partitionEntries = [
+            bytearray(disk.read(0x1BE,16)), 
+            bytearray(disk.read(0x1CE,16)), 
+            bytearray(disk.read(0x1DE,16)), 
+            bytearray(disk.read(0x1EE,16))
+        ]
         self.signature = bytearray(disk.read(0x1FE,2))
         
         self.partitions:list[MBR_Partition] = []

@@ -13,7 +13,7 @@ class BlockDev():
         :param self: The BlockDev object
         '''
         pass
-    def read(self, offset:int, count:int) -> bytes:
+    def read(self, offset:int, count:int) -> bytearray:
         '''
         Reads data from the block device
 
@@ -23,10 +23,10 @@ class BlockDev():
         :param count: The number of bytes to read
         :type count: int
         :return: The bytes read
-        :rtype: bytes
+        :rtype: bytearray
         '''
         return bytearray(count)
-    def write(self, offset:int, data:bytes) -> None:
+    def write(self, offset:int, data:bytes|bytearray) -> None:
         '''
         Writes data to the block device
 
@@ -34,6 +34,6 @@ class BlockDev():
         :param offset: The offset to begin writing from
         :type offset: int
         :param data: The bytes to write
-        :type data: bytes
+        :type data: bytes|bytearray
         '''
         pass

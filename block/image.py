@@ -18,14 +18,14 @@ class ImageFile(BlockDev):
         :type path: str
         '''
         self.file = open(path,"rb+")
-    def read(self, offset: int, count: int) -> bytes:
+    def read(self, offset: int, count: int) -> bytearray:
         #Seeks to the offset
         self.file.seek(offset)
 
         #Reads and returns the data
         data = self.file.read(count)
-        return data
-    def write(self, offset: int, data: bytes) -> None:
+        return bytearray(data)
+    def write(self, offset: int, data: bytearray|bytes) -> None:
         #Seeks to the offset
         self.file.seek(offset)
 
